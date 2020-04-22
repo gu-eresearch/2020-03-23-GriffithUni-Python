@@ -11,9 +11,9 @@ humantime: "9:00am to 12:30pm"    # human-readable times for the workshop (e.g.,
 startdate: 2020-04-27      # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
 enddate: 2020-05-01        # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
 instructor: ["Kim Keogh"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
-helper: ["To Be Announced"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
+helper: ["McKenna Buckley"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 email: ["eresearch-support@griffith.edu.au", "hackyhour@griffith.edu.au"]    # boxed, comma-separated list of contact email addresses for the host, lead instructor, or whoever else is handling questions, like ["marlyn.wescoff@example.org", "fran.bilas@example.org", "ruth.lichterman@example.org"]
-collaborative_notes:             # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
+collaborative_notes:  https://docs.google.com/document/d/1poRdkTCIFyrxe5TIpxF0_txd60VDybpcEMfQAHHTR7Y/edit?usp=sharing           # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document (e.g., https://pad.carpentries.org/2015-01-01-euphoria)
 eventbrite:           # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
 ---
 
@@ -105,8 +105,7 @@ address.
 {% endcomment %}
 {% if page.latitude and page.longitude %}
 <p id="where">
-  <strong>Where:</strong>
-<a href="https://www.griffith.edu.au/about-griffith/campuses-facilities">See Campus Maps here</a>
+  <strong>Where:</strong> Hosting training virtually via Zoom
 </p>
 {% endif %}
 
@@ -129,8 +128,14 @@ SPECIAL REQUIREMENTS
 Modify the block below if there are any special requirements.
 {% endcomment %}
 <p id="requirements">
-  <strong>Requirements:</strong> Participants must bring a laptop with a
+  <strong>Requirements:</strong> Participants must have a laptop with a
   Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges on. They should have a few specific software packages installed (listed <a href="#setup">below</a>).
+<br>
+You will need, at the minimum, speakers/headphones and a microphone, as well as a good enough network connection to receive audio and video. A camera is optional, and with over 10 people registered to take part, we may have to ask some of you to disable cameras anyway to reduce bandwidth demands.
+<br>
+If you have access to a second computer/screen/ipad etc, that will make your experience enormously better since you can then watch the instructor on one screen and type on the other. Unfortunately a phone screen won't be sufficient - you will need something that is big enough to follow what the instructor is typing.
+<br>
+Be aware that this workshop will effectively be two full days of video streaming. If you access the internet through a phone data plan, this may use all of your data allowance and become very expensive. In this case, please consider whether you can make alternative arrangements or let me know if you would like to withdraw from the workshop.
 </p>
 
 {% comment %}
@@ -139,6 +144,7 @@ ACCESSIBILITY
 Modify the block below if there are any barriers to accessibility or
 special instructions.
 {% endcomment %}
+<!--
 <p id="accessibility">
   <strong>Accessibility:</strong> We are committed to making this workshop
   accessible to everybody.
@@ -156,7 +162,7 @@ special instructions.
   get in touch (using contact details below) and we will
   attempt to provide them.
 </p>
-
+-->
 {% comment %}
 CONTACT EMAIL ADDRESS
 
@@ -433,7 +439,7 @@ please preview your site before committing, and make sure to run
   </div>
 </div> {% comment %} End of 'shell' section. {% endcomment %}
 
-<div id="git"> {% comment %} Start of 'Git' section. {% endcomment %}
+<div id="git"> {% comment %} Start of 'Git' section. 
   <h3>Git</h3>
   <p>
     Git is a version control system that lets you track who made changes
@@ -489,7 +495,7 @@ please preview your site before committing, and make sure to run
         <code>sudo dnf install git</code>.
       </p>
     </div>
-  </div>
+  </div>{% endcomment %}
 </div> {% comment %} End of 'Git' section. {% endcomment %}
 
 <div id="editor"> {% comment %} Start of 'editor' section. {% endcomment %}
@@ -572,8 +578,8 @@ please preview your site before committing, and make sure to run
       <strong>please make sure you install Python version 3.x</strong>
       (e.g., 3.6 is fine).
     </p>
-
-    <p>
+{% comment %}
+    <p> 
       We will teach Python using the <a href="https://jupyter.org/">Jupyter notebook</a>,
       a programming environment that runs in a web browser. For this to work you will need a reasonably
       up-to-date browser. The current versions of the Chrome, Safari and
@@ -582,6 +588,7 @@ please preview your site before committing, and make sure to run
       (some older browsers, including Internet Explorer version 9
       and below, are not).
     </p>
+ {% endcomment %}
 
   <div class="row">
     <div class="col-md-4">
