@@ -128,8 +128,14 @@ SPECIAL REQUIREMENTS
 Modify the block below if there are any special requirements.
 {% endcomment %}
 <p id="requirements">
-  <strong>Requirements:</strong> Participants must bring a laptop with a
+  <strong>Requirements:</strong> Participants must have a laptop with a
   Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges on. They should have a few specific software packages installed (listed <a href="#setup">below</a>).
+<br>
+You will need, at the minimum, speakers/headphones and a microphone, as well as a good enough network connection to receive audio and video. A camera is optional, and with over 10 people registered to take part, we may have to ask some of you to disable cameras anyway to reduce bandwidth demands.
+<br>
+If you have access to a second computer/screen/ipad etc, that will make your experience enormously better since you can then watch the instructor on one screen and type on the other. Unfortunately a phone screen won't be sufficient - you will need something that is big enough to follow what the instructor is typing.
+<br>
+Be aware that this workshop will effectively be two full days of video streaming. If you access the internet through a phone data plan, this may use all of your data allowance and become very expensive. In this case, please consider whether you can make alternative arrangements or let me know if you would like to withdraw from the workshop.
 </p>
 
 {% comment %}
@@ -138,6 +144,7 @@ ACCESSIBILITY
 Modify the block below if there are any barriers to accessibility or
 special instructions.
 {% endcomment %}
+<!--
 <p id="accessibility">
   <strong>Accessibility:</strong> We are committed to making this workshop
   accessible to everybody.
@@ -155,7 +162,7 @@ special instructions.
   get in touch (using contact details below) and we will
   attempt to provide them.
 </p>
-
+-->
 {% comment %}
 CONTACT EMAIL ADDRESS
 
