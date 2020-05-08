@@ -1,7 +1,7 @@
 ---
 layout: workshop      # DON'T CHANGE THIS.
 venue: "Introduction to Python and Bash <br><br>Griffith University <br> Virtual Campus (hosted on Zoom) "        # brief name of host site without address (e.g., "Euphoric State University")
-address: "Griffith University, Virtual Campus"      # full street address of workshop (e.g., "Room A, 123 Forth Street, Blimingen, Euphoria")
+address: "online"      # full street address of workshop (e.g., "Room A, 123 Forth Street, Blimingen, Euphoria")
 country: "au"      # lowercase two-letter ISO country code such as "fr" (see https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes)
 language: "en"     # lowercase two-letter ISO language code such as "fr" (see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 latitude: "-27.552941"     # decimal latitude of workshop venue (use https://www.latlong.net/)
@@ -103,9 +103,29 @@ if the latitude and longitude of the workshop have been set.  You
 can use https://itouchmap.com/latlong.html to find the lat/long of an
 address.
 {% endcomment %}
-{% if page.latitude and page.longitude %}
+{% assign begin_address = page.address | slice: 0, 4 | downcase  %}
+{% if page.address == "online" %}
+{% assign online = "true_private" %}
+{% elsif begin_address contains "http" %}
+{% assign online = "true_public" %}
+{% else %}
+{% assign online = "false" %}
+{% endif %}
+{% if page.latitude and page.longitude and online == "false" %}
 <p id="where">
   <strong>Where:</strong> Hosting training virtually via Zoom
+</p>
+{% elsif online == "true_public" %}
+<p id="where">
+  <strong>Where:</strong>
+  online at <a href="{{page.address}}">{{page.address}}</a>.
+  If you need a password or other information to access the training,
+  the instructor will pass it on to you before the workshop.
+</p>
+{% elsif online == "true_private" %}
+<p id="where">
+  <strong>Where:</strong> This training will take place online.
+  The instructors will provide you with the infromation you will need to connect to this meeting.
 </p>
 {% endif %}
 
@@ -144,11 +164,12 @@ ACCESSIBILITY
 Modify the block below if there are any barriers to accessibility or
 special instructions.
 {% endcomment %}
-<!--
+
 <p id="accessibility">
-  <strong>Accessibility:</strong> We are committed to making this workshop
-  accessible to everybody.
-  The workshop organizers have checked that:
+  <strong>Accessibility:</strong>
+{% if online == "false" %}
+  We are committed to making this workshop
+  accessible to everybody. The workshop organizers have checked that:
 </p>
 <ul>
   <li>The room is wheelchair / scooter accessible.</li>
@@ -161,8 +182,13 @@ special instructions.
   you (e.g. sign-language interpreters, lactation facilities) please
   get in touch (using contact details below) and we will
   attempt to provide them.
+{% else %}
+  We are dedicated to providing a positive and accessible learning environment for all. Please
+  notify the instructors in advance of the workshop if you require any accommodations or if there is
+  anything we can do to make this workshop more accessible to you.
 </p>
--->
+{% endif %}
+
 {% comment %}
 CONTACT EMAIL ADDRESS
 
@@ -196,11 +222,13 @@ CODE OF CONDUCT
 <h2 id="code-of-conduct">Code of Conduct</h2>
 
 <p>
-Everyone who participates in Carpentries activities is required to conform to the <a href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html">Code of Conduct</a>.This document also outlines how to report an incident if needed.
+Everyone who participates in Carpentries activities is required to conform to the <a href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html">Code of Conduct</a>. This document also outlines how to report an incident if needed.
 </p>
 
 <p class="text-center">
-<button type="button" class="btn btn-info">Report a Code of Conduct Incident</button>
+  <a href="https://goo.gl/forms/KoUfO53Za3apOuOK2">
+    <button type="button" class="btn btn-info">Report a Code of Conduct Incident</button>
+  </a>
 </p>
 <hr/>
 
@@ -210,23 +238,26 @@ Collaborative Notes
 
 If you want to use an Etherpad, go to
 
-http://pad.carpentries.org/YYYY-MM-DD-site
+https://pad.carpentries.org/YYYY-MM-DD-site
 
 where 'YYYY-MM-DD-site' is the identifier for your workshop,
 e.g., '2015-06-10-esu'.
+
+Note we also have a CodiMD (the open-source version of HackMD)
+available at https://codimd.carpentries.org
 {% endcomment %}
 {% if page.collaborative_notes %}
 <h2 id="collaborative_notes">Collaborative Notes</h2>
 
 <p>
-We will use this <a href="{{page.collaborative_notes}}">collaborative document</a> for chatting, taking notes, and sharing URLs and bits of code.
+We will use this <a href="{{ page.collaborative_notes }}">collaborative document</a> for chatting, taking notes, and sharing URLs and bits of code.
 </p>
 <hr/>
 {% endif %}
 
 
-{% comment %} 
-SURVEYS - DO NOT EDIT SURVEY LINKS 
+{% comment %}
+SURVEYS - DO NOT EDIT SURVEY LINKS
 {% endcomment %}
 <h2 id="surveys">Surveys</h2>
 <p>Please be sure to complete these surveys before and after the workshop.</p>
@@ -439,7 +470,7 @@ please preview your site before committing, and make sure to run
   </div>
 </div> {% comment %} End of 'shell' section. {% endcomment %}
 
-<div id="git"> {% comment %} Start of 'Git' section. 
+<div id="git"> {% comment %} Start of 'Git' section.
   <h3>Git</h3>
   <p>
     Git is a version control system that lets you track who made changes
@@ -470,10 +501,10 @@ please preview your site before committing, and make sure to run
     <div class="col-md-4">
       <h4 id="git-macosx">macOS</h4>
       <p>
-        Please open the Terminal app, type <code>git --version</code> and press 
-        <kbd>Enter</kbd>/<kbd>Return</kbd>. If it's not installed already, 
-        follow the instructions to <code>Install</code> the "command line 
-        developer tools". <strong>Don't click</strong> "Get Xcode", because that will 
+        Please open the Terminal app, type <code>git --version</code> and press
+        <kbd>Enter</kbd>/<kbd>Return</kbd>. If it's not installed already,
+        follow the instructions to <code>Install</code> the "command line
+        developer tools". <strong>Don't click</strong> "Get Xcode", because that will
         take too long and is not necessary for our Git lesson.
         After installing these tools, there won't be anything in your <code>/Applications</code>
         folder, as they and Git are command line programs.
@@ -482,7 +513,7 @@ please preview your site before committing, and make sure to run
         <a href="http://sourceforge.net/projects/git-osx-installer/files/">available here</a>.
         Because this installer is not signed by the developer, you may have to
         right click (control click) on the .pkg file, click Open, and click
-        Open in the pop-up dialog. You can watch 
+        Open in the pop-up dialog. You can watch
         <a href="https://www.youtube.com/watch?v=9LQhwETCdwY ">a video tutorial about this case</a>.
       </p>
     </div>
@@ -507,8 +538,8 @@ please preview your site before committing, and make sure to run
     color-coding of key words. The default text editor on macOS and
     Linux is usually set to Vim, which is not famous for being
     intuitive. If you accidentally find yourself stuck in it, hit
-    the <kbd>Esc</kbd> key, followed by <kbd>:</kbd>+<kbd>Q</kbd>+<kbd>!</kbd> 
-    (colon, lower-case 'q', exclamation mark), then hitting <kbd>Return</kbd> to 
+    the <kbd>Esc</kbd> key, followed by <kbd>:</kbd>+<kbd>Q</kbd>+<kbd>!</kbd>
+    (colon, lower-case 'q', exclamation mark), then hitting <kbd>Return</kbd> to
     return to the shell.
   </p>
 
@@ -579,7 +610,7 @@ please preview your site before committing, and make sure to run
       (e.g., 3.6 is fine).
     </p>
 {% comment %}
-    <p> 
+    <p>
       We will teach Python using the <a href="https://jupyter.org/">Jupyter notebook</a>,
       a programming environment that runs in a web browser. For this to work you will need a reasonably
       up-to-date browser. The current versions of the Chrome, Safari and
